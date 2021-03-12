@@ -36,7 +36,9 @@ public class BuildingPlacer : MonoBehaviour
     void PlaceBuilding()
     {
         GameObject buildingObj = Instantiate(curBuildingPreset.prefab, curPlacementPos, Quaternion.identity);
+        Resort.inst.SpendMoney(curBuildingPreset.cost);
         Resort.inst.OnPlaceBuilding(curBuildingPreset);
+        
 
         CancelBuildingPlacement();
     }
