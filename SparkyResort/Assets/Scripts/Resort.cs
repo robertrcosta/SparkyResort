@@ -31,16 +31,17 @@ public class Resort : MonoBehaviour
     {
         maxPopulation += building.population;
         buildings.Add(building);
-        CalculatePopulation();
-        UpdateMoney();
-        UpdatePopulation();
+        CalculateMaxPopulation();
+
+        UpdateMoneyLabel();
+        UpdatePopulationLabel();
     }
 
-    public void UpdateMoney()
+    public void UpdateMoneyLabel()
     {
         moneyTextField.text = string.Format("€{0}", new object[1] { money });
     }
-    public void UpdatePopulation()
+    public void UpdatePopulationLabel()
     {
         populationTextField.text = $"{curPopulation} / {maxPopulation} (max)";
     }
@@ -52,7 +53,7 @@ public class Resort : MonoBehaviour
         money -= amount;
     }
 
-    void CalculatePopulation()
+    void CalculateMaxPopulation()
     {
         maxPopulation = 0;
 
@@ -61,20 +62,40 @@ public class Resort : MonoBehaviour
 		
     }
 
+    void CalculateNewVisitors()
+    {
+        int newVisitors = Random.Range(1, 20);
+        int maxSpaceAvailable = maxPopulation - curPopulation;
+
+        int newVisitorsAllowed = Mathf.Min(newVisitors, maxSpaceAvailable);
+
+        if(newVisitorsAllowed >= newVisitors) 
+        {
+            curPopulation += newVisitors;
+            print($"{newVisitors} guests have arrived on our resort!");
+        } else {
+            curPopulation += newVisitorsAllowed;
+            print($"{newVisitors} guests have arrived, but we only had room for {newVisitorsAllowed} guests on our resort. Build more rooms!");
+        }
+    }
+
     public void GameLoop()
     {
-        curPopulation = Mathf.Min(maxPopulation, curPopulation + Random.Range(1, 20));
+        
+        CalculateNewVisitors();
         money += curPopulation;
-        UpdateMoney();
-        CalculatePopulation();
-        UpdatePopulation();
+        CalculateMaxPopulation();
+
+        UpdateMoneyLabel();
+        UpdatePopulationLabel();
     }
     
     // Start is called before the first frame update
     void Start()
     {
-        UpdateMoney();
-        UpdatePopulation();
+        UpdateMoneyLabel();
+        UpdatePopulationLabel();
+
         InvokeRepeating("GameLoop", 10f, 10f);
     }
 
