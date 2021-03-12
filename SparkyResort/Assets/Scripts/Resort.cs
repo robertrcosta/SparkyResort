@@ -61,18 +61,21 @@ public class Resort : MonoBehaviour
 		
     }
 
-    public void EndTurn()
+    public void GameLoop()
     {
-        day++;
+        curPopulation = Mathf.Min(maxPopulation, curPopulation + Random.Range(1, 20));
+        money += curPopulation;
         UpdateMoney();
         CalculatePopulation();
+        UpdatePopulation();
     }
-
+    
     // Start is called before the first frame update
     void Start()
     {
         UpdateMoney();
         UpdatePopulation();
+        InvokeRepeating("GameLoop", 10f, 10f);
     }
 
     // Update is called once per frame
