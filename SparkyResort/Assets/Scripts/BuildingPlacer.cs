@@ -21,7 +21,6 @@ public class BuildingPlacer : MonoBehaviour
 
     public void BeginNewBuildingPlacement(BuildingPreset buildingPreset)
     {
-        print("BeginNewBuildingPlacement");
         currentlyPlacing = true;
         curBuildingPreset = buildingPreset;
         placementIndicator.SetActive(true);
