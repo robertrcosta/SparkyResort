@@ -15,6 +15,8 @@ public class Resort : MonoBehaviour
     public int incomePerJob;
 
     public TextMeshProUGUI statsText;
+    public TextMeshProUGUI moneyTextField;
+    public TextMeshProUGUI populationTextField;
 
     private List<BuildingPreset> buildings = new List<BuildingPreset>();
 
@@ -29,11 +31,25 @@ public class Resort : MonoBehaviour
     {
         maxPopulation += building.population;
         buildings.Add(building);
+        CalculatePopulation();
+        UpdateMoney();
+        UpdatePopulation();
     }
 
-    void CalculateMoney()
+    public void UpdateMoney()
     {
-		print("CalculateMoney");
+        moneyTextField.text = string.Format("€{0}", new object[1] { money });
+    }
+    public void UpdatePopulation()
+    {
+        populationTextField.text = $"{curPopulation} / {maxPopulation} (max)";
+    }
+
+    public void SpendMoney(int amount)
+    {
+
+		print($"Spending €{amount}");
+        money -= amount;
     }
 
     void CalculatePopulation()
@@ -48,19 +64,19 @@ public class Resort : MonoBehaviour
     public void EndTurn()
     {
         day++;
-        CalculateMoney();
+        UpdateMoney();
         CalculatePopulation();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        UpdateMoney();
+        UpdatePopulation();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
