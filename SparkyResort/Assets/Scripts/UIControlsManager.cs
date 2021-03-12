@@ -13,7 +13,11 @@ public class UIControlsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        playCanvas.SetActive(true);
+        pauseCanvas.SetActive(false);
+        showBuildingsCanvas.SetActive(true);
+        accommodationsCanvas.SetActive(false);
+        otherBuildingsCanvas.SetActive(false);
     }
 
     // Update is called once per frame
