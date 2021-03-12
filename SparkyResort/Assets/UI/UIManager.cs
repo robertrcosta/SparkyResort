@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class UIManager : MonoBehaviour
         playCanvas.SetActive(true);
         pauseCanvas.SetActive(false);
 
-        // TODO: Start Game
+         SceneManager.LoadScene (sceneName:"Game");
     }
 
     public void didTapPause()
