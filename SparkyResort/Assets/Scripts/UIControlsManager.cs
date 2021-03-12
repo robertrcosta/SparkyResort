@@ -1,13 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class UIControlsManager : MonoBehaviour
 {
-
-    public GameObject welcomeCanvas;
-    public GameObject playCanvas;
+	public GameObject playCanvas;
     public GameObject pauseCanvas;
     public GameObject otherBuildingsCanvas;
     public GameObject accommodationsCanvas;
@@ -16,9 +13,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        welcomeCanvas.SetActive(true);
-        playCanvas.SetActive(false);
-        pauseCanvas.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -27,18 +22,8 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void didTapPlay()
-    {
-        welcomeCanvas.SetActive(false);
-        playCanvas.SetActive(true);
-        pauseCanvas.SetActive(false);
-
-         SceneManager.LoadScene (sceneName:"Game");
-    }
-
     public void didTapPause()
     {
-        welcomeCanvas.SetActive(false);
         playCanvas.SetActive(false);
         pauseCanvas.SetActive(true);
 
@@ -47,7 +32,6 @@ public class UIManager : MonoBehaviour
 
     public void didTapContinue()
     {
-        welcomeCanvas.SetActive(false);
         playCanvas.SetActive(true);
         pauseCanvas.SetActive(false);
 

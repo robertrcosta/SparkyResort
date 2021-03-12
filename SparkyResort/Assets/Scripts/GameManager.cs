@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+	
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.FindGameObjectWithTag("Music").GetComponent<MusicClass>().PlayMusic();
+
     }
 
     // Update is called once per frame
@@ -15,4 +17,5 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
 }
